@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Overlock-Regular',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +20,22 @@ code {
   font-family: "DancingScript-SemiBold";
   src: local("DancingScript-SemiBold"),
    url("./fonts/DancingScript-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Overlock-Regular";
+  src: local("Overlock-Regular"),
+   url("./fonts/Overlock-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Overlock-Regular";
+  src: local("Overlock-Regular"),
+   url("./fonts/Overlock-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Overlock-Black";
+  src: local("Overlock-Black"),
+   url("./fonts/Overlock-Black.ttf") format("truetype");
 }

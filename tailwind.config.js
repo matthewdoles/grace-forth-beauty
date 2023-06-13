@@ -7,7 +7,7 @@ module.exports = {
     themes: [
       {
         primaryTheme: {
-          primary: 'rgb(255, 211, 105)',
+          primary: 'rgb(240,141,159)',
           secondary: 'rgb(34, 40, 49)',
           accent: 'rgb(57, 62, 70)',
           neutral: 'rgb(238, 238, 238)',
