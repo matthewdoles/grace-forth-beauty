@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MdOutlineDelete } from 'react-icons/md';
 import { getRecordId, getServices } from '../../functions';
 import { ServiceDetail } from '../../Models/ServiceDetail.model';
 import { serviceCol } from '../../firebase';
@@ -89,17 +90,16 @@ const ServiceEdit = () => {
                       return state;
                     });
                   }}
-                  className={`input ${inputStyles} text-2xl min-[600px]:text-4xl text-white text-center border-white w-3/4`}
+                  className={`input ${inputStyles} text-2xl min-[600px]:text-4xl text-white text-center border-white w-1/2`}
                 />
               </div>
-              <div className="flex flex-col w-32 items-center mt-4">
-                <button
-                  className="btn bg-red-500 hover:bg-red-500/50 w-12 border-none text-white"
+              <div className="flex flex-col w-32 items-center justify-center">
+                <MdOutlineDelete
+                  className="w-12 h-12 text-red-500 hover:text-red-500/50 border-none"
                   onClick={() => {
                     setServices((currState) => [...currState.filter((_s, index) => i !== index)]);
-                  }}>
-                  Delete
-                </button>
+                  }}
+                />
               </div>
             </div>
           </div>
