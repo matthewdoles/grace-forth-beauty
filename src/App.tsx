@@ -1,24 +1,47 @@
 import React from 'react';
 import headerImage from './images/header-background.jpg';
 import ServiceMenu from './components/ServiceMenu';
+import InstaFeed from './components/InstaFeed';
+import { Parallax, ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
 
 function App() {
   return (
-    <div className="min-h-screen min-w-full">
-      <img className="w-full absolute top-0 -z-10 h-[400px] object-cover" src={headerImage} />
-      <div className="h-[400px] bg-black opacity-20"></div>
-      <div className="absolute top-0 min-w-full h-[400px]">
-        <div className="flex flex-col justify-center items-center h-[400px]">
-          <p className="text-9xl text-white" style={{ fontFamily: 'DancingScript-SemiBold' }}>
+    <ParallaxProvider>
+      <ParallaxBanner layers={[{ image: headerImage, speed: -15 }]} className="h-[500px]">
+        <div className="h-[500px] bg-black opacity-20"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <p
+            className="text-5xl min-[550px]:text-7xl min-[920px]:text-9xl text-white"
+            style={{ fontFamily: 'DancingScript-SemiBold' }}>
             Grace Forth Beauty
           </p>
-          <p className="mt-8 text-4xl text-white">licensed esthetician &amp; lash artist</p>
+          <p className="mt-8 text-2xl min-[550px]:text-3xl min-[900px]:text-4xl text-white">
+            licensed esthetician &amp; lash artist
+          </p>
         </div>
-      </div>
-      <div className="flex flex-col mx-auto max-w-[800px] min-w-[800px] h-[600px]">
-        <ServiceMenu />
-      </div>
-    </div>
+      </ParallaxBanner>
+      <Parallax speed={20}>
+        <div className="flex justify-center items-center w-screen">
+          <ServiceMenu />
+        </div>
+      </Parallax>
+      <ParallaxBanner layers={[{ image: headerImage, speed: -15 }]} className="h-[500px]">
+        <div className="h-[500px] bg-black opacity-20"></div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <p
+            className="text-4xl min-[600px]:text-7xl text-white"
+            style={{ fontFamily: 'Overlock-Black' }}>
+            Call for Scheduling
+          </p>
+          <p className="text-3xl min-[600px]:text-5xl text-white mt-8">317-376-0416</p>
+        </div>
+      </ParallaxBanner>
+      <Parallax speed={20}>
+        <div className="flex flex-col mx-auto justify-center items-center w-screen">
+          <InstaFeed />
+        </div>
+      </Parallax>
+    </ParallaxProvider>
   );
 }
 
