@@ -21,4 +21,4 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 };
 
 // export all your collections
-export const serviceCol = createCollection<Service>('retroBoards');
+export const serviceCol = createCollection<Service>('services');

@@ -10,7 +10,6 @@ export const getServices = async () => {
     .then((serviceDocs) => {
       serviceDocs.forEach((serviceDoc) => {
         const b = serviceDoc.data();
-        console.log(b.services);
         b.services.forEach((s: ServiceDetail) => serviceData.push(s));
       });
       return serviceData;
@@ -19,4 +18,20 @@ export const getServices = async () => {
       console.log(err);
     });
   return serviceData;
+};
+
+export const getRecordId = async () => {
+  let recordId = '';
+  const q = query(collection(firestore, 'services'));
+  await getDocs(q)
+    .then((serviceDocs) => {
+      serviceDocs.forEach((serviceDoc) => {
+        recordId = serviceDoc.id;
+      });
+      return recordId;
+    })
+    .catch((err: FirebaseError) => {
+      console.log(err);
+    });
+  return recordId;
 };
