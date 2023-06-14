@@ -1,7 +1,21 @@
-import React from 'react';
-import { services } from '../../const';
+import React, { useEffect, useState } from 'react';
+import { getServices } from '../../functions';
+import { ServiceDetail } from '../../Models/ServiceDetail.model';
 
 const ServiceMenu = () => {
+  const [services, setServices] = useState<ServiceDetail[]>([]);
+
+  useEffect(() => {
+    fetchServices();
+  }, []);
+
+  const fetchServices = async () => {
+    setServices(await getServices());
+  };
+
+  useEffect(() => {
+    console.log(services);
+  }, [services]);
   return (
     <div className="w-full min-[800px]:w-[520px] p-4 m-4">
       <div className="flex flex-row h-24">
