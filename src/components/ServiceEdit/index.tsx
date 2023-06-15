@@ -15,8 +15,8 @@ const ServiceEdit = () => {
   const [services, setServices] = useState<ServiceDetail[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
-  const [showError, setShowError] = useState<boolean>(true);
-  const [errorMessage, setErrorMessage] = useState<string>('asdfasd');
+  const [showError, setShowError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     fetchServices();
