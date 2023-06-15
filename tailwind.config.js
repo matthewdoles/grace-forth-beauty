@@ -3,10 +3,10 @@ module.exports = {
   theme: {
     extend: {},
     screens: {
-      sm: '640px',
+      sm: '420px',
       md: '600px',
-      lg: '1024px',
-      xl: '1280px'
+      lg: '900px',
+      xl: '1200px'
     }
   },
   daisyui: {

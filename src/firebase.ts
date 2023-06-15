@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, CollectionReference, collection, DocumentData } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { Service } from './Models/Service.model';
+import { Service } from './models/Service.model';
 
 export const firebaseApp = initializeApp({
   apiKey: 'AIzaSyDzKKfqMWkpU1TW8clr9qq8CXVR8xXtuzk',

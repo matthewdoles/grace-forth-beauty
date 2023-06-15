@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { MdClose, MdOutlineDelete } from 'react-icons/md';
 import { getRecordId, getServices } from '../../functions';
-import { ServiceDetail } from '../../Models/ServiceDetail.model';
+import { ServiceDetail } from '../../models/ServiceDetail.model';
 import { serviceCol } from '../../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
