@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
+import { Circles } from 'react-loader-spinner';
 
 import { auth } from '../../firebase';
 
-type Props = {
-  callback?: () => void;
-};
-
-const Login = ({ callback }: Props) => {
+const Login = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -21,28 +18,16 @@ const Login = ({ callback }: Props) => {
   const handleFormSubmit = async () => {
     if (email.length > 0 && password.length > 0) {
       setLoading(false);
+      setError('');
       setPersistence(auth, browserLocalPersistence)
         .then(() => {
           signInWithEmailAndPassword(auth, email, password)
             .then(() => {
               setEmail('');
               setPassword('');
-              if (callback) {
-                callback();
-              }
             })
             .catch((err: FirebaseError) => {
-              console.log(err);
               setError(err.message);
-              // if (err.message === firebaseErrorMessages.wrongPassword) {
-              //   dispatch({ type: SET_USER_ERROR, error: errorMessages.wrongPassword });
-              // } else if (err.message === firebaseErrorMessages.invalidEmail) {
-              //   dispatch({ type: SET_USER_ERROR, error: errorMessages.invalidEmail });
-              // } else {
-              //   dispatch({
-              //     type: SET_USER_ERROR,
-              //     error: errorMessages.unknown
-              //   });
             });
         })
         .catch((err: FirebaseError) => console.log(err))
@@ -70,7 +55,7 @@ const Login = ({ callback }: Props) => {
       <div className="flex flex-col w-full items-center mt-4">
         {loading && (
           <div className="flex flex-row justify-center p-4">
-            {/* <BounceLoader size={75} color="#4ECCA3" /> */}
+            <Circles height="80" width="80" color="rgb(240,141,159)" visible={true} />
           </div>
         )}
         {!loading && (

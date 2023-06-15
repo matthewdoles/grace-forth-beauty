@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 
 import { getServices } from '../../functions';
-import { ServiceDetail } from '../../models/ServiceDetail.model';
+import { ServiceDetail } from '../../Models/ServiceDetail.model';
 import '../../const/styles.css';
 
 const ServiceMenu = () => {

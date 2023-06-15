@@ -2,7 +2,7 @@ import { collection, getDocs, query } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
 
 import { firestore } from '../firebase';
-import { ServiceDetail } from '../models/ServiceDetail.model';
+import { ServiceDetail } from '../Models/ServiceDetail.model';
 
 export const getServices = async () => {
   const serviceData: ServiceDetail[] = [];

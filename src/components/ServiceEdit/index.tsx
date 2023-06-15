@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 import { MdClose, MdOutlineDelete } from 'react-icons/md';
 import { getRecordId, getServices } from '../../functions';
-import { ServiceDetail } from '../../models/ServiceDetail.model';
+import { ServiceDetail } from '../../Models/ServiceDetail.model';
 import { serviceCol } from '../../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 import { FirebaseError } from 'firebase/app';
+import '../../const/styles.css';
 
 const inputStyles =
-  '!outline-0 text-xl w-full max-w-md my-4 bg-transparent border-x-transparent ' +
-  `border-t-transparent rounded-none border-b-2 mr-2 border-primary`;
+  '!outline-0 text-xl w-md my-4 bg-transparent border-x-transparent ' +
+  'border-t-transparent rounded-none border-b-2 mr-2 border-primary';
 
 const ServiceEdit = () => {
   const [services, setServices] = useState<ServiceDetail[]>([]);
@@ -66,70 +67,62 @@ const ServiceEdit = () => {
           />
         </div>
       ) : null}
-      <div className="overflow-y-scroll h-[600px] w-full">
-        <div className="flex flex-row h-24">
-          <div className="flex flex-grow items-center justify-end mr-8">
-            <p className="text-2xl min-[600px]:text-4xl" style={{ fontFamily: 'Overlock-Black' }}>
-              Service
-            </p>
+      <div className="overflow-y-scroll h-3/4 w-full">
+        <div className="flex flex-row h-24 w-full">
+          <div className="flex flex-grow items-center justify-end mr-8 ">
+            <p className="text-2xl md:text-4xl overlockBlack">Service</p>
           </div>
           <div
-            className="w-[100px] min-[450px]:w-[200px] bg-primary flex justify-center items-center"
+            className="w-[100px] md:w-[200px] bg-primary flex justify-center items-center"
             style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
-            <p
-              className="text-2xl min-[600px]:text-4xl text-white"
-              style={{ fontFamily: 'Overlock-Black' }}>
-              Pricing
-            </p>
+            <p className="text-2xl md:text-4xl text-white overlockBlack">Pricing</p>
           </div>
           <div className="w-32"></div>
         </div>
         {services.map((service, i) => (
-          <div key={i} className="w-full">
-            <div className="flex flex-row h-20">
-              <div className="flex flex-grow items-center justify-end mr-8">
-                <input
-                  type="text"
-                  value={service.name}
-                  onChange={(e) => {
-                    setServices((currState) => {
-                      const state = [...currState];
-                      state[i].name = e.target.value;
-                      return state;
-                    });
-                  }}
-                  className={`input ${inputStyles} text-2xl`}
-                />
-              </div>
-              <div
-                className="w-[100px] min-[450px]:w-[200px] bg-primary flex justify-center items-center"
-                style={
-                  i + 1 === services.length
-                    ? { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }
-                    : {}
-                }>
-                <input
-                  type="text"
-                  style={{ fontFamily: 'Overlock-Black' }}
-                  value={service.price}
-                  onChange={(e) => {
-                    setServices((currState) => {
-                      const state = [...currState];
-                      state[i].price = e.target.value;
-                      return state;
-                    });
-                  }}
-                  className={`input ${inputStyles} text-2xl min-[600px]:text-4xl text-white text-center border-white w-[150px]`}
-                />
-              </div>
-              <div className="flex flex-col w-32 items-center justify-center">
-                <MdOutlineDelete
-                  className="w-12 h-12 text-red-500 hover:text-red-500/50 border-none"
-                  onClick={() => {
-                    setServices((currState) => [...currState.filter((_s, index) => i !== index)]);
-                  }}
-                />
-              </div>
+          <div key={i} className="flex flex-row h-20">
+            <div className="flex flex-grow items-center justify-end mr-8">
+              <input
+                type="text"
+                value={service.name}
+                onChange={(e) => {
+                  setServices((currState) => {
+                    const state = [...currState];
+                    state[i].name = e.target.value;
+                    return state;
+                  });
+                }}
+                className={`input ${inputStyles} text-2xl`}
+              />
+            </div>
+            <div
+              className="w-[100px] md:w-[200px] bg-primary flex justify-center items-center"
+              style={
+                i + 1 === services.length
+                  ? { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }
+                  : {}
+              }>
+              <input
+                type="text"
+                style={{ fontFamily: 'Overlock-Black' }}
+                value={service.price}
+                onChange={(e) => {
+                  setServices((currState) => {
+                    const state = [...currState];
+                    state[i].price = e.target.value;
+                    return state;
+                  });
+                }}
+                className={`input ${inputStyles} text-2xl text-white text-center border-white w-[75px] md:w-[150px]`}
+              />
+            </div>
+            <div className="flex flex-col w-32 items-center justify-center">
+              <MdOutlineDelete
+                className="w-12 h-12 text-red-500 hover:text-red-500/50 border-none"
+                onClick={() => {
+                  setServices((currState) => [...currState.filter((_s, index) => i !== index)]);
+                }}
+              />
             </div>
           </div>
         ))}
