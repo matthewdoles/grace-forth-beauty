@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { MdOutlineDelete } from 'react-icons/md';
+import { Circles } from 'react-loader-spinner';
+import { MdClose, MdOutlineDelete } from 'react-icons/md';
 import { getRecordId, getServices } from '../../functions';
 import { ServiceDetail } from '../../Models/ServiceDetail.model';
 import { serviceCol } from '../../firebase';
@@ -12,6 +13,11 @@ const inputStyles =
 
 const ServiceEdit = () => {
   const [services, setServices] = useState<ServiceDetail[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
+  const [showError, setShowError] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>('asdfasd');
+
   useEffect(() => {
     fetchServices();
   }, []);
@@ -21,22 +27,45 @@ const ServiceEdit = () => {
   };
 
   const onSave = async () => {
+    setLoading(true);
     const recordId = await getRecordId();
-    console.log(recordId);
     const boardDocRef = doc(serviceCol, recordId);
     updateDoc(boardDocRef, {
       services
     })
-      .then(() => {
-        console.log('success');
-      })
+      .then(() => setShowSuccess(true))
       .catch((err: FirebaseError) => {
-        console.log(err);
-      });
+        setShowError(true);
+        setErrorMessage(err.message);
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-full">
+      {showSuccess ? (
+        <div className="alert bg-green-500 mb-8">
+          <p></p>
+          <h3 className="text-2xl text-white font-bold">Updates successfully saved!</h3>
+          <MdClose
+            className="text-2xl text-white cursor-pointer"
+            onClick={() => setShowSuccess(false)}
+          />
+        </div>
+      ) : null}
+      {showError ? (
+        <div className="alert bg-red-500 mb-8">
+          <p></p>
+          <div>
+            <h3 className="text-2xl text-white font-bold">Error!</h3>
+            <div className="text-xl text-white">{errorMessage}</div>
+          </div>
+          <MdClose
+            className="text-2xl text-white cursor-pointer"
+            onClick={() => setShowError(false)}
+          />
+        </div>
+      ) : null}
       <div className="overflow-y-scroll h-[600px] w-full">
         <div className="flex flex-row h-24">
           <div className="flex flex-grow items-center justify-end mr-8">
@@ -90,7 +119,7 @@ const ServiceEdit = () => {
                       return state;
                     });
                   }}
-                  className={`input ${inputStyles} text-2xl min-[600px]:text-4xl text-white text-center border-white w-1/2`}
+                  className={`input ${inputStyles} text-2xl min-[600px]:text-4xl text-white text-center border-white w-[150px]`}
                 />
               </div>
               <div className="flex flex-col w-32 items-center justify-center">
@@ -105,19 +134,25 @@ const ServiceEdit = () => {
           </div>
         ))}
       </div>
-      <div className="flex flex-row mx-auto justify-center w-full items-center mt-4">
-        <button
-          className="btn bg-primary hover:bg-primary/50 w-52 border-none m-2 text-white"
-          onClick={() => {
-            setServices((currState) => [...currState, { name: '', price: '' }]);
-          }}>
-          Add
-        </button>
-        <button
-          className="btn bg-green-500 hover:bg-green-500/50 w-52 border-none m-2 text-white"
-          onClick={onSave}>
-          Save
-        </button>
+      <div className="flex flex-row mx-auto justify-center w-full items-center mt-8">
+        {loading ? (
+          <Circles height="50" width="50" color="rgb(240,141,159)" visible={true} />
+        ) : (
+          <>
+            <button
+              className="btn bg-primary hover:bg-primary/50 w-52 border-none m-2 text-white"
+              onClick={() => {
+                setServices((currState) => [...currState, { name: '', price: '' }]);
+              }}>
+              Add
+            </button>
+            <button
+              className="btn bg-green-500 hover:bg-green-500/50 w-52 border-none m-2 text-white"
+              onClick={onSave}>
+              Save
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

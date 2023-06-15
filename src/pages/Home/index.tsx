@@ -1,8 +1,9 @@
 import React from 'react';
+import { Parallax, ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
+import { FaPhoneAlt } from 'react-icons/fa';
+
 import headerImage from '../../images/header-background.jpg';
 import backgroundImage from '../../images/background.jpg';
-import { Parallax, ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
-
 import ServiceMenu from '../../components/ServiceMenu';
 import InstaFeed from '../../components/InstaFeed';
 
@@ -25,9 +26,7 @@ function Home() {
         </div>
       </ParallaxBanner>
       <Parallax speed={10}>
-        <div className="flex justify-center items-center">
-          <ServiceMenu />
-        </div>
+        <ServiceMenu />
       </Parallax>
       <ParallaxBanner
         layers={[{ image: backgroundImage, speed: -15 }]}
@@ -41,9 +40,9 @@ function Home() {
           </p>
           <p className="text-3xl min-[600px]:text-5xl text-white text-center mt-8">317-376-0416</p>
           <a
-            className="btn bg-primary hover:bg-primary/75 w-52 border-2 mt-8 text-white"
+            className="btn bg-primary hover:bg-primary/75 w-60 border-2 mt-8 text-white text-2xl min-[600px]:text-3xl capitalize"
             href="tel:317-376-0416">
-            Call Now
+            <FaPhoneAlt className="h-6" /> Call Now
           </a>
         </div>
       </ParallaxBanner>

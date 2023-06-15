@@ -1,63 +1,74 @@
 import React, { useEffect, useState } from 'react';
+import { Circles } from 'react-loader-spinner';
+
 import { getServices } from '../../functions';
 import { ServiceDetail } from '../../Models/ServiceDetail.model';
 
 const ServiceMenu = () => {
   const [services, setServices] = useState<ServiceDetail[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     fetchServices();
   }, []);
 
   const fetchServices = async () => {
-    setServices(await getServices());
+    const serviceData = await getServices();
+    setServices(serviceData);
+    setLoading(false);
   };
 
   return (
-    <div className="w-full min-[800px]:w-[520px] p-4 m-4">
-      <div className="flex flex-row h-24">
-        <div className="flex flex-grow items-center justify-end mr-8">
-          <p className="text-2xl min-[600px]:text-4xl" style={{ fontFamily: 'Overlock-Black' }}>
-            Service
-          </p>
-        </div>
-        <div
-          className="w-[100px] min-[450px]:w-[200px] bg-primary flex justify-center items-center"
-          style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
-          <p
-            className="text-2xl min-[600px]:text-4xl text-white"
-            style={{ fontFamily: 'Overlock-Black' }}>
-            Pricing
-          </p>
-        </div>
-      </div>
-      {services.map((service, i) => (
-        <div key={i}>
-          <div className="flex flex-row h-2">
-            <div className="flex flex-grow"></div>
-            <div className="w-[100px] min-[450px]:w-[200px] bg-primary flex justify-center items-center">
-              <div className="w-[75px] min-[450px]:w-[125px] border-white border-b-2 min-[600px]:border-b-4"></div>
-            </div>
-          </div>
-          <div className="flex flex-row h-20">
+    <div className="w-full min-h-[250px] flex justify-center items-center">
+      {loading ? (
+        <Circles height="80" width="80" color="rgb(240,141,159)" visible={true} />
+      ) : (
+        <div className="w-full min-[800px]:w-[520px] p-4 m-4">
+          <div className="flex flex-row h-24">
             <div className="flex flex-grow items-center justify-end mr-8">
-              <p className="text-2xl min-[600px]:text-4xl">{service.name}</p>
+              <p className="text-2xl min-[600px]:text-4xl" style={{ fontFamily: 'Overlock-Black' }}>
+                Service
+              </p>
             </div>
             <div
-              className="w-[100px] min-[450px]:w-[200px] bg-primary flex justify-center items-center"
-              style={
-                i + 1 === services.length
-                  ? { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }
-                  : {}
-              }>
+              className="w-[100px] min-[500px]:w-[200px] bg-primary flex justify-center items-center"
+              style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>
               <p
                 className="text-2xl min-[600px]:text-4xl text-white"
                 style={{ fontFamily: 'Overlock-Black' }}>
-                ${service.price}
+                Pricing
               </p>
             </div>
           </div>
+          {services.map((service, i) => (
+            <div key={i}>
+              <div className="flex flex-row h-2">
+                <div className="flex flex-grow"></div>
+                <div className="w-[100px] min-[500px]:w-[200px] bg-primary flex justify-center items-center">
+                  <div className="w-[75px] min-[500px]:w-[125px] border-white border-b-2 min-[600px]:border-b-4"></div>
+                </div>
+              </div>
+              <div className="flex flex-row h-20">
+                <div className="flex flex-grow items-center justify-end mr-8">
+                  <p className="text-2xl min-[600px]:text-4xl">{service.name}</p>
+                </div>
+                <div
+                  className="w-[100px] min-[500px]:w-[200px] bg-primary flex justify-center items-center"
+                  style={
+                    i + 1 === services.length
+                      ? { borderBottomLeftRadius: 12, borderBottomRightRadius: 12 }
+                      : {}
+                  }>
+                  <p
+                    className="text-2xl min-[600px]:text-4xl text-white"
+                    style={{ fontFamily: 'Overlock-Black' }}>
+                    ${service.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
