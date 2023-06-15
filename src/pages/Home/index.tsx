@@ -25,7 +25,7 @@ function Home() {
         </div>
       </ParallaxBanner>
       <Parallax speed={10}>
-        <div className="flex justify-center items-center w-screen">
+        <div className="flex justify-center items-center">
           <ServiceMenu />
         </div>
       </Parallax>
@@ -35,15 +35,20 @@ function Home() {
         <div className="h-[300px] min-[600px]:h-[500px] bg-black opacity-20"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <p
-            className="text-4xl min-[600px]:text-7xl text-white"
+            className="text-4xl min-[600px]:text-7xl text-white text-center"
             style={{ fontFamily: 'Overlock-Black' }}>
             Call for Scheduling
           </p>
-          <p className="text-3xl min-[600px]:text-5xl text-white mt-8">317-376-0416</p>
+          <p className="text-3xl min-[600px]:text-5xl text-white text-center mt-8">317-376-0416</p>
+          <a
+            className="btn bg-primary hover:bg-primary/75 w-52 border-2 mt-8 text-white"
+            href="tel:317-376-0416">
+            Call Now
+          </a>
         </div>
       </ParallaxBanner>
       <Parallax speed={10}>
-        <div className="flex flex-col mx-auto justify-center items-center w-screen">
+        <div className="flex mx-auto justify-center items-center pb-16">
           <InstaFeed />
         </div>
       </Parallax>
