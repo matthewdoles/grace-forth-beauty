@@ -24,7 +24,7 @@ const ServiceMenu = () => {
       {loading ? (
         <Circles height="80" width="80" color="rgb(240,141,159)" visible={true} />
       ) : (
-        <div className="w-full lg:w-[600px] p-4 m-4">
+        <div className="w-full lg:w-[650px] p-4 m-4">
           <div className="flex flex-row h-24">
             <div className="flex flex-grow items-center justify-end mr-8 overlockBlack">
               <p className="text-2xl md:text-4xl">Service</p>
@@ -45,7 +45,7 @@ const ServiceMenu = () => {
               </div>
               <div className="flex flex-row h-20">
                 <div className="flex flex-grow items-center justify-end mr-8">
-                  <p className="text-2xl md:text-4xl">{service.name}</p>
+                  <p className="text-2xl md:text-3xl">{service.name}</p>
                 </div>
                 <div
                   className="w-[100px] md:w-[200px] bg-primary flex justify-center items-center"
