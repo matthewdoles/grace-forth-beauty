@@ -3,9 +3,9 @@ import { Parallax, ParallaxBanner, ParallaxProvider } from 'react-scroll-paralla
 
 import backgroundImage from '../../images/background.jpg';
 import headerImage from '../../images/header-background.jpg';
-import CallToSchedule from '../../components/CallToSchedule';
 import HeaderBanner from '../../components/HeaderBanner';
 import InstaFeed from '../../components/InstaFeed';
+import ScheduleAppointment from '../../components/ScheduleAppointment';
 import ServiceMenu from '../../components/ServiceMenu';
 
 function Home() {
@@ -25,7 +25,7 @@ function Home() {
           layers={[{ image: backgroundImage, speed: -15 }]}
           className="h-[300px] md:h-[500px]">
           <div className="h-[300px] md:h-[500px] bg-black opacity-20"></div>
-          <CallToSchedule />
+          <ScheduleAppointment />
         </ParallaxBanner>
         <Parallax speed={10}>
           <div className="flex justify-center items-center pb-16">
