@@ -10,7 +10,7 @@ import ServiceMenu from '../../components/ServiceMenu';
 
 function Home() {
   return (
-    <div className="min-w-[380px]">
+    <div>
       <ParallaxProvider>
         <ParallaxBanner
           layers={[{ image: headerImage, speed: -15 }]}
